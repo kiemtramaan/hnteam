@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'VT323', monospace;
+    font-family: 'VT323', monospace; /* Applied new font */
     background: black;
     color: #0f0;
     display: flex;
@@ -23,14 +23,14 @@ canvas#matrix {
     padding: 20px;
     border: 2px solid #0f0;
     margin: 20px;
-    width: clamp(300px, 90%, 700px);
-    height: auto;
+    width: clamp(300px, 90%, 700px); /* Responsive width */
+    height: auto; /* Adjust height automatically */
     background: rgba(0, 0, 0, 0.8);
     z-index: 1;
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    display: none;
+    border-radius: 8px; /* Rounded corners */
+    display: none; /* Hidden by default until login */
 }
 
 .title-bar {
@@ -43,7 +43,7 @@ canvas#matrix {
     display: flex;
     margin-bottom: 15px;
     border-bottom: 1px solid #0f0;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
 }
 
 .tab {
@@ -55,7 +55,7 @@ canvas#matrix {
     margin-right: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent tab text from breaking */
 }
 
 .tab.active {
@@ -81,7 +81,7 @@ canvas#matrix {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: stretch; /* Changed back to stretch to make inputs full width */
 }
 
 .output-section {
@@ -89,29 +89,29 @@ canvas#matrix {
     border: 1px solid #0f0;
     padding: 10px;
     overflow-y: auto;
-    max-height: 250px;
+    max-height: 250px; /* Fixed height for output */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
     text-align: center;
-    margin-top: 20px;
+    margin-top: 20px; /* Add margin for separation */
     border-radius: 5px;
 }
 
 .input-row {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; /* Stack label and input on small screens */
+    align-items: flex-start; /* Align labels to the start */
     margin-bottom: 15px;
-    width: 100%;
+    width: 100%; /* Ensure it takes full width of stretched parent */
 }
 
 .input-row label {
-    width: auto;
-    margin-right: 0;
-    margin-bottom: 5px;
-    text-align: left;
+    width: auto; /* Adjust width automatically */
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 5px; /* Add bottom margin */
+    text-align: left; /* Align label text to left */
 }
 
 .input-row input {
@@ -120,9 +120,9 @@ canvas#matrix {
     color: #0f0;
     border: 1px solid #0f0;
     padding: 8px 10px;
-    font-family: 'VT323', monospace;
-    width: 100%;
-    box-sizing: border-box;
+    font-family: 'VT323', monospace; /* Applied new font */
+    width: 100%; /* Full width input */
+    box-sizing: border-box; /* Include padding in width */
     border-radius: 5px;
 }
 
@@ -137,10 +137,10 @@ button {
     padding: 8px 15px;
     margin-top: 15px;
     cursor: pointer;
-    font-family: 'VT323', monospace;
+    font-family: 'VT323', monospace; /* Applied new font */
     border-radius: 5px;
     transition: background 0.3s, color 0.3s;
-    align-self: center;
+    align-self: center; /* This is the key: overrides parent's stretch and centers the button */
 }
 
 button.enabled {
@@ -165,18 +165,27 @@ button:not(.enabled) {
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
+/* New subtle blink effect */
 .subtle-blink {
     animation: subtleBlink 1.5s infinite;
 }
 
 @keyframes subtleBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+} /* Blinks to 70% opacity */
 
 .percent {
     color: yellow;
@@ -186,23 +195,28 @@ button:not(.enabled) {
     margin: 8px 0;
     word-wrap: break-word;
     text-align: center;
-}
+} /* Added text-align: center */
 
+/* Media queries for responsiveness */
 @media (min-width: 768px) {
     .input-row {
-        flex-direction: row;
+        flex-direction: row; /* Back to row for larger screens */
         align-items: center;
     }
-
     .input-row label {
-        width: 120px;
+        width: 120px; /* Fixed width for labels on larger screens */
         margin-right: 10px;
         margin-bottom: 0;
         text-align: right;
     }
-
     .tab-content.active {
-        flex-direction: row;
+        flex-direction: row; /* Side-by-side for larger screens */
+    }
+    .input-section {
+        /* No padding-right here as it's handled by input-row's full width */
+    }
+    .output-section {
+        margin-top: 0;
     }
 }
 
@@ -217,7 +231,7 @@ button:not(.enabled) {
 }
 
 #audio-controls button {
-    margin: 0;
+    margin: 0; /* Override margin-top from general button style */
     padding: 10px 15px;
     font-size: 1em;
 }
@@ -226,9 +240,10 @@ button:not(.enabled) {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
-    color: rgba(0, 255, 0, 0.7);
+    color: rgba(0, 255, 0, 0.7); /* Slightly faded green */
 }
 
+/* Login Overlay Styles */
 #login-overlay {
     position: fixed;
     inset: 0;
