@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'VT323', monospace; /* Applied new font */
+    font-family: 'VT323', monospace;
     background: black;
     color: #0f0;
     display: flex;
@@ -23,23 +23,27 @@ canvas#matrix {
     padding: 20px;
     border: 2px solid #0f0;
     margin: 20px;
-    width: clamp(300px, 90%, 700px); /* Responsive width */
-    height: auto; /* Adjust height automatically */
+    width: clamp(300px, 90%, 700px);
+    height: auto;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1;
     display: flex;
     flex-direction: column;
-    border-radius: 8px; /* Rounded corners */
-    /* display: none;  This is now handled by inline style in HTML for initial load */
+    border-radius: 8px;
+    display: none;
 }
 
-.title-bar { text-align: center; margin-bottom: 15px; font-size: 1.2em; }
+.title-bar {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
 
 .tabs {
     display: flex;
     margin-bottom: 15px;
     border-bottom: 1px solid #0f0;
-    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
 .tab {
@@ -51,7 +55,7 @@ canvas#matrix {
     margin-right: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    white-space: nowrap; /* Prevent tab text from breaking */
+    white-space: nowrap;
 }
 
 .tab.active {
@@ -61,14 +65,23 @@ canvas#matrix {
     border-bottom: 1px solid black;
 }
 
-.tab-content { display: none; padding-top: 10px; flex-grow: 1; gap: 20px; flex-direction: column; }
-.tab-content.active { display: flex; }
+.tab-content {
+    display: none;
+    padding-top: 10px;
+    flex-grow: 1;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.tab-content.active {
+    display: flex;
+}
 
 .input-section {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Ensures inputs stretch to full width */
+    align-items: stretch;
 }
 
 .output-section {
@@ -76,29 +89,29 @@ canvas#matrix {
     border: 1px solid #0f0;
     padding: 10px;
     overflow-y: auto;
-    max-height: 250px; /* Fixed height for output */
+    max-height: 250px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-top: 20px; /* Add margin for separation */
+    margin-top: 20px;
     border-radius: 5px;
 }
 
 .input-row {
     display: flex;
-    flex-direction: column; /* Stack label and input on small screens */
-    align-items: flex-start; /* Align labels to the start */
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 15px;
-    width: 100%; /* Ensure it takes full width of stretched parent */
+    width: 100%;
 }
 
 .input-row label {
-    width: auto; /* Adjust width automatically */
-    margin-right: 0; /* Remove right margin */
-    margin-bottom: 5px; /* Add bottom margin */
-    text-align: left; /* Align label text to left */
+    width: auto;
+    margin-right: 0;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
 .input-row input {
@@ -107,13 +120,15 @@ canvas#matrix {
     color: #0f0;
     border: 1px solid #0f0;
     padding: 8px 10px;
-    font-family: 'VT323', monospace; /* Applied new font */
-    width: 100%; /* Full width input */
-    box-sizing: border-box; /* Include padding in width */
+    font-family: 'VT323', monospace;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: 5px;
 }
 
-input::placeholder { color: rgba(0, 255, 0, 0.5); }
+input::placeholder {
+    color: rgba(0, 255, 0, 0.5);
+}
 
 button {
     background: black;
@@ -122,47 +137,72 @@ button {
     padding: 8px 15px;
     margin-top: 15px;
     cursor: pointer;
-    font-family: 'VT323', monospace; /* Applied new font */
+    font-family: 'VT323', monospace;
     border-radius: 5px;
     transition: background 0.3s, color 0.3s;
-    align-self: center; /* Overrides parent's stretch and centers the button */
-    max-width: fit-content; /* Ensures button does not stretch excessively */
+    align-self: center;
 }
 
-button.enabled { background: #0f0; color: black; }
-button:not(.enabled) { opacity: 0.6; cursor: not-allowed; }
+button.enabled {
+    background: #0f0;
+    color: black;
+}
 
-.warning-icon { font-size: 2em; color: red; margin: 10px 0; animation: blink 1s infinite; }
-.blink { animation: blink 1s infinite; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+button:not(.enabled) {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 
-/* New subtle blink effect */
-.subtle-blink { animation: subtleBlink 1.5s infinite; }
-@keyframes subtleBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } } /* Blinks to 70% opacity */
+.warning-icon {
+    font-size: 2em;
+    color: red;
+    margin: 10px 0;
+    animation: blink 1s infinite;
+}
 
-.percent { color: yellow; }
-.result-line { margin: 8px 0; word-wrap: break-word; text-align: center; } /* Added text-align: center */
+.blink {
+    animation: blink 1s infinite;
+}
 
-/* Media queries for responsiveness */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.subtle-blink {
+    animation: subtleBlink 1.5s infinite;
+}
+
+@keyframes subtleBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.percent {
+    color: yellow;
+}
+
+.result-line {
+    margin: 8px 0;
+    word-wrap: break-word;
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .input-row {
-        flex-direction: row; /* Back to row for larger screens */
+        flex-direction: row;
         align-items: center;
     }
+
     .input-row label {
-        width: 120px; /* Fixed width for labels on larger screens */
+        width: 120px;
         margin-right: 10px;
         margin-bottom: 0;
         text-align: right;
     }
+
     .tab-content.active {
-        flex-direction: row; /* Side-by-side for larger screens */
-    }
-    .input-section {
-        /* No padding-right here as it's handled by input-row's full width */
-    }
-    .output-section {
-        margin-top: 0;
+        flex-direction: row;
     }
 }
 
@@ -177,7 +217,7 @@ button:not(.enabled) { opacity: 0.6; cursor: not-allowed; }
 }
 
 #audio-controls button {
-    margin: 0; /* Override margin-top from general button style */
+    margin: 0;
     padding: 10px 15px;
     font-size: 1em;
 }
@@ -186,10 +226,9 @@ button:not(.enabled) { opacity: 0.6; cursor: not-allowed; }
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
-    color: rgba(0, 255, 0, 0.7); /* Slightly faded green */
+    color: rgba(0, 255, 0, 0.7);
 }
 
-/* Login Overlay Styles */
 #login-overlay {
     position: fixed;
     inset: 0;
@@ -206,14 +245,21 @@ button:not(.enabled) { opacity: 0.6; cursor: not-allowed; }
     border: 2px solid #0f0;
     text-align: center;
     border-radius: 8px;
-    width: clamp(300px, 80%, 450px); /* Added responsive width */
-    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
-.login-box h2 { margin-top: 0; }
+.login-box h2 {
+    margin-top: 0;
+}
 
-.field { margin-bottom: 15px; text-align: left; }
-.field label { display: block; margin-bottom: 5px; }
+.field {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+}
 
 .password-wrapper {
     display: flex;
